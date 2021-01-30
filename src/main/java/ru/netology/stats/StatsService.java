@@ -16,38 +16,27 @@ public class StatsService {
     }
 
     public long lastMonthMaximumSales(long[] purchases) {
-        long maxValue = purchases[0];
-        for (long purchase : purchases) {
-            if (maxValue < purchase) {
-                maxValue = purchase;
-            }
-        }
-
         int number = 0;
         int month = 0;
+        long maxValue = purchases[0];
         for (long purchase : purchases) {
             month++;
-            if (purchase == maxValue) {
+            if (maxValue <= purchase) {
+                maxValue = purchase;
                 number = month;
             }
         }
         return number;
     }
 
-
     public long lastMonthMinimumSales(long[] purchases) {
-        long minValue = purchases[0];
-        for (long purchase : purchases) {
-            if (minValue > purchase) {
-                minValue = purchase;
-            }
-        }
-
         int number = 0;
         int month = 0;
+        long minValue = purchases[0];
         for (long purchase : purchases) {
             month++;
-            if (purchase == minValue) {
+            if (minValue >= purchase) {
+                minValue = purchase;
                 number = month;
             }
         }
