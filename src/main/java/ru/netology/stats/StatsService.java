@@ -16,7 +16,6 @@ public class StatsService {
     }
 
     public long lastMonthMaximumSales(long[] purchases) {
-// находим максимальное значение
         long maxValue = purchases[0];
         for (long purchase : purchases) {
             if (maxValue < purchase) {
@@ -24,32 +23,19 @@ public class StatsService {
             }
         }
 
-// находим количество максимальных значений
-        int numberMaxValues = 0;
+        int number = 0;
+        int month = 0;
         for (long purchase : purchases) {
+            month++;
             if (purchase == maxValue) {
-                numberMaxValues++;
+                number = month;
             }
         }
-
-// находим номер последнего месяца с пиком продаж
-        int counter = 0;
-        int lastMaximumNumber = 0;
-        for (long purchase : purchases) {
-            lastMaximumNumber++;
-            if (purchase == maxValue) {
-                counter++;
-            }
-            if (counter == numberMaxValues) {
-                break;
-            }
-        }
-        return lastMaximumNumber;
+        return number;
     }
 
 
     public long lastMonthMinimumSales(long[] purchases) {
-// находим минимальное значение
         long minValue = purchases[0];
         for (long purchase : purchases) {
             if (minValue > purchase) {
@@ -57,27 +43,15 @@ public class StatsService {
             }
         }
 
-// находим количество минимальных значений
-        int numberMinValues = 0;
+        int number = 0;
+        int month = 0;
         for (long purchase : purchases) {
+            month++;
             if (purchase == minValue) {
-                numberMinValues++;
+                number = month;
             }
         }
-
-// находим номер месяца, в котором был минимум продаж
-        int counter = 0;
-        int lastMinimumNumber = 0;
-        for (long purchase : purchases) {
-            lastMinimumNumber++;
-            if (purchase == minValue) {
-                counter++;
-            }
-            if (counter == numberMinValues) {
-                break;
-            }
-        }
-        return lastMinimumNumber;
+        return number;
     }
 
     public long numberMonthsBelowAverageSales(long[] purchases) {
